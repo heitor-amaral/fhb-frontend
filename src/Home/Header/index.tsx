@@ -9,9 +9,6 @@ import {
 } from './styles';
 
 function Header() {
-  function handleOnClickSignInButton() {
-    return '';
-  }
   return (
     <HeaderContainer>
       <LogoContainer>
