@@ -77,7 +77,7 @@ function renderLatestItem(data: LatestItem[]) {
 }
 
 function Latest() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<LatestItem[]>([]);
 
   useEffect(() => {

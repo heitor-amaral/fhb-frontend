@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   AsideContainer,
   HeaderContainer,
@@ -18,8 +19,9 @@ function Header() {
       </LogoContainer>
 
       <AsideContainer>
-        <LinkButton style={{ marginRight: 20 }}>Sign In</LinkButton>
-        <LinkButton>About</LinkButton>
+        <Link to="/login">
+          <LinkButton style={{ marginRight: 20 }}>Sign In</LinkButton>
+        </Link>
       </AsideContainer>
     </HeaderContainer>
   );

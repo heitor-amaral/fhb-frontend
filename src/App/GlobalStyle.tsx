@@ -17,9 +17,16 @@ const GlobalStyle = createGlobalStyle`
       -moz-osx-font-smoothing: grayscale;
   }
 
-  a {
+  a, button {
     text-decoration: none;
     cursor: pointer;
+  }
+
+  textarea, input, button {
+    outline: none;
+    appearance: none;
+    border: none;
+    padding: 0;
   }
 `;
 

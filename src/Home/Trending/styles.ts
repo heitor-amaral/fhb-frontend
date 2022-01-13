@@ -26,12 +26,12 @@ export const TrendingTitle = styled.h3``;
 export const TrendingContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -16px;
+  /* margin: 0 -16px; */
 `;
 
 export const TrendingItemContainer = styled.a`
   display: flex;
-  padding: 0 16px;
+  padding-right: 8px;
   min-width: 33.33%;
   margin-bottom: 24px;
   flex-wrap: wrap;

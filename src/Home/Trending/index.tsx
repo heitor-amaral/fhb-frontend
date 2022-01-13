@@ -65,7 +65,7 @@ function renderTrendingItem(data: TrendingItem[]) {
 
 function Trending() {
   const [data, setData] = useState<TrendingItem[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
