@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Categories from './Categories';
-import Header from './Header';
+import Header from '../shared/Header';
 import Latest from './Latest';
 import {
   BottomContainer,
   ContentContainer,
   HeaderContainer,
-  HomeContainer,
+  Container,
   Line,
   Message,
   MessageContainer,
 } from './styles';
 import Trending from './Trending';
+import { Article, getTrendingArticlesAPI } from './Home.service';
 
 function Home() {
+  const [trendingArticles, setTrendingArticles] = React.useState<
+    Article[] | undefined
+  >();
+
+  const actionButtonHeader = () => {
+    const user = localStorage.getItem('user');
+
+    return {
+      title: user ? 'Create Post' : 'Login',
+      navigateTo: '/post/create',
+    };
+  };
+
   return (
-    <HomeContainer>
+    <Container>
       <HeaderContainer>
-        <Header />
+        <Header actionButton={actionButtonHeader()} />
       </HeaderContainer>
 
       <ContentContainer>
@@ -37,7 +51,7 @@ function Home() {
           <Categories />
         </BottomContainer>
       </ContentContainer>
-    </HomeContainer>
+    </Container>
   );
 }
 

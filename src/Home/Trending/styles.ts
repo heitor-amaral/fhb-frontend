@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TrendingIcon from '../../assets/trending_icon.png';
 
@@ -29,12 +30,14 @@ export const TrendingContent = styled.div`
   /* margin: 0 -16px; */
 `;
 
-export const TrendingItemContainer = styled.a`
+export const TrendingItemContainer = styled(Link)`
   display: flex;
   padding-right: 8px;
   min-width: 33.33%;
   margin-bottom: 24px;
   flex-wrap: wrap;
+
+  text-decoration: none;
 `;
 export const IndexNumberContainer = styled.div`
   margin-right: 16px;

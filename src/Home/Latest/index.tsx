@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Dot from '../../shared/Dot';
 import LoadingSpinner from '../../shared/LoadingSpinner';
+import { Article, getLastArticlesAPI } from '../Home.service';
 import { getLatestAPI } from './services';
 import {
   LatestContainer,
@@ -19,9 +21,8 @@ import {
   LatestItemTagContainer,
   LatestItemTagText,
 } from './styles';
-import { LatestItem } from './types';
 
-function renderLatestItem(data: LatestItem[]) {
+function renderLatestItem(data: Article[]) {
   if (!data.length) {
     return <h3>No topics...</h3>;
   }
@@ -29,46 +30,39 @@ function renderLatestItem(data: LatestItem[]) {
   return (
     <>
       {data.map(value => (
-        <LatestItemContainer key={value.id}>
+        <LatestItemContainer
+          to={`/post/${value.id_article}`}
+          key={value.id_article}
+        >
           <LatestItemContent>
             <LatestItemContentHeader>
-              <LatestItemContentHeaderImage src={value.author.image} />
+              <LatestItemContentHeaderImage
+                src={`https://avatars.dicebear.com/api/male/${Math.random()}.svg`}
+              />
               <LatestItemContentHeaderText>
-                {`${value.author.name}`}{' '}
-                {value.category && `- ${value.category}`}
+                {value.id_author.split('@')[0]}
               </LatestItemContentHeaderText>
             </LatestItemContentHeader>
 
             <LatestItemContentTitleContainer>
               <LatestItemContentTitle>{value.title}</LatestItemContentTitle>
-              {value.subtitle && (
-                <LatestItemContentSubTitle>
-                  {value.subtitle}
-                </LatestItemContentSubTitle>
-              )}
             </LatestItemContentTitleContainer>
 
             <LatestItemContentFooter>
               <LatestItemContentFooterText>
-                {value.date.toDateString()}
+                {value.createdAt}
               </LatestItemContentFooterText>
               <Dot />
               <LatestItemContentFooterText>
-                {value.timeToRead}
+                {Number(Math.random() * 50 + 1).toFixed(0)} minutes
               </LatestItemContentFooterText>
-              {value.tag && (
-                <>
-                  <Dot />
-                  <LatestItemTagContainer>
-                    <LatestItemTagText>{value.tag}</LatestItemTagText>
-                  </LatestItemTagContainer>
-                </>
-              )}
             </LatestItemContentFooter>
           </LatestItemContent>
 
           <LastestItemImageContainer>
-            <LatestItemImage src={value.image} />
+            <LatestItemImage
+              src={`https://picsum.photos/seed/${Math.random()}/200/300`}
+            />
           </LastestItemImageContainer>
         </LatestItemContainer>
       ))}
@@ -78,12 +72,12 @@ function renderLatestItem(data: LatestItem[]) {
 
 function Latest() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<LatestItem[]>([]);
+  const [data, setData] = useState<Article[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const result = await getLatestAPI();
+      const result = await getLastArticlesAPI();
       setData(result);
       setIsLoading(false);
     };

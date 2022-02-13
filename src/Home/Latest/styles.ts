@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const LatestContainer = styled.section`
@@ -6,7 +7,7 @@ export const LatestContainer = styled.section`
 
   flex-direction: column;
 `;
-export const LatestItemContainer = styled.a`
+export const LatestItemContainer = styled(Link)`
   display: flex;
   margin-bottom: 24px;
   flex-wrap: wrap;
@@ -20,6 +21,8 @@ export const LatestItemContent = styled.div`
   flex-direction: column;
 
   margin-right: 20px;
+
+  width: 300px;
 `;
 export const LatestItemContentHeader = styled.div`
   display: flex;

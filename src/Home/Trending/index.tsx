@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Dot from '../../shared/Dot';
 import LoadingSpinner from '../../shared/LoadingSpinner';
-import { getTrendindAPI } from './services';
+import { Article, getTrendingArticlesAPI } from '../Home.service';
 import {
   TrendingContainer,
   TrendingHeader,
@@ -20,9 +21,8 @@ import {
   TrendingItemContentFooter,
   TrendingItemContentFooterText,
 } from './styles';
-import { TrendingItem } from './types';
 
-function renderTrendingItem(data: TrendingItem[]) {
+function renderTrendingItem(data: Article[]) {
   if (!data.length) {
     return <h3>No trending topics...</h3>;
   }
@@ -30,16 +30,21 @@ function renderTrendingItem(data: TrendingItem[]) {
   return (
     <>
       {data.map((value, index) => (
-        <TrendingItemContainer key={value.id}>
+        <TrendingItemContainer
+          to={`/post/${value.id_article}`}
+          key={value.id_article}
+        >
           <IndexNumberContainer>
             <IndexNumber>{index + 1}</IndexNumber>
           </IndexNumberContainer>
 
           <TrendingItemContent>
             <TrendingItemContentHeader>
-              <TrendingItemContentHeaderImage src={value.author.image} />
+              <TrendingItemContentHeaderImage
+                src={`https://avatars.dicebear.com/api/male/${Math.random()}.svg`}
+              />
               <TrendingItemContentHeaderText>
-                {value.author.name}
+                {value.id_author.split('@')[0]}
               </TrendingItemContentHeaderText>
             </TrendingItemContentHeader>
 
@@ -49,11 +54,11 @@ function renderTrendingItem(data: TrendingItem[]) {
 
             <TrendingItemContentFooter>
               <TrendingItemContentFooterText>
-                {value.date.toDateString()}
+                {value.createdAt}
               </TrendingItemContentFooterText>
               <Dot />
               <TrendingItemContentFooterText>
-                {value.timeToRead}
+                {Number(Math.random() * 50 + 1).toFixed(0)} minutes
               </TrendingItemContentFooterText>
             </TrendingItemContentFooter>
           </TrendingItemContent>
@@ -64,13 +69,13 @@ function renderTrendingItem(data: TrendingItem[]) {
 }
 
 function Trending() {
-  const [data, setData] = useState<TrendingItem[]>([]);
+  const [data, setData] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const result = await getTrendindAPI();
+      const result = await getTrendingArticlesAPI();
       setData(result);
       setIsLoading(false);
     };

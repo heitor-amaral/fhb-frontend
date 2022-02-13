@@ -5,6 +5,7 @@ export const ButtonContainer = styled.div`
   border-radius: 99em;
   color: ${props => props.theme.colors.quaternary};
   padding: 16px;
+  margin-bottom: 16px;
 
   text-align: center;
 

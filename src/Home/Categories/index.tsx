@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../../shared/LoadingSpinner';
-import { getCategoriesAPI } from './services';
+import { ArticleTheme, getArticlesThemesAPI } from '../Home.service';
 import {
   CategoriesContainer,
   CategoriesTitle,
@@ -10,7 +10,7 @@ import {
 } from './styles';
 import { Category } from './types';
 
-function renderCategoryItem(data: Category[]) {
+function renderCategoryItem(data: ArticleTheme[]) {
   if (!data.length) {
     return <h3>No categories...</h3>;
   }
@@ -18,7 +18,7 @@ function renderCategoryItem(data: Category[]) {
   return (
     <>
       {data.map(value => (
-        <CategoryItemContainer key={value.id}>
+        <CategoryItemContainer key={value.id_theme}>
           <CategoryItemText>{value.name}</CategoryItemText>
         </CategoryItemContainer>
       ))}
@@ -27,12 +27,12 @@ function renderCategoryItem(data: Category[]) {
 }
 function Categories() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<Category[]>([]);
+  const [data, setData] = useState<ArticleTheme[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const result = await getCategoriesAPI();
+      const result = await getArticlesThemesAPI();
       setData(result);
       setIsLoading(false);
     };

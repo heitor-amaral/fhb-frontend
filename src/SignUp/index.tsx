@@ -1,25 +1,23 @@
 /* eslint-disable no-param-reassign */
 import { useRef, MutableRefObject, ChangeEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import Button from '../shared/Button';
 import FormField from '../shared/FormField/intex';
-import { loginAPI } from './login.service';
+import { signUpAPI } from './signup.service';
 import {
-  LoginContainer,
-  LoginContent,
+  Container,
+  Content,
   LogoContainer,
   LogoImage,
   FormContainer,
   ButtonContainer,
 } from './styles';
 
-function Login() {
-  const loginRef = useRef<string>('');
+function SignUp() {
+  const nameRef = useRef<string>('');
+  const emailRef = useRef<string>('');
   const passwordRef = useRef<string>('');
   const navigation = useNavigate();
-
-  const { setState } = useAuth();
 
   function handleOnChange(
     event: ChangeEvent<HTMLInputElement>,
@@ -28,42 +26,45 @@ function Login() {
     reference.current = event.target.value;
   }
 
-  const handleClickLogin = useCallback(async () => {
-    const login = loginRef.current;
+  const handleClickSignUp = useCallback(async () => {
+    const login_email = emailRef.current;
     const password = passwordRef.current;
+    const name = nameRef.current;
 
-    if (!login || !password) {
+    if (!login_email || !password || !name) {
       alert('Preencha todos os campos');
       return;
     }
 
     try {
-      await loginAPI({ login, password });
-      localStorage.setItem('user', JSON.stringify({ email: login }));
-
-      setState({ email: login });
+      await signUpAPI({ login_email, name, password });
       navigation('/');
     } catch (err) {
       alert('Login ou senha incorretos');
     }
-  }, [navigation, loginRef, passwordRef]);
+  }, [navigation, emailRef, passwordRef, nameRef]);
 
-  const handleClickSignUp = useCallback(() => {
-    navigation('/signup');
+  const handleCancel = useCallback(() => {
+    navigation('/login');
   }, [navigation]);
 
   return (
-    <LoginContainer>
-      <LoginContent>
+    <Container>
+      <Content>
         <LogoContainer>
           <LogoImage />
         </LogoContainer>
 
         <FormContainer>
           <FormField
+            label="Name"
+            textAlign="center"
+            onChange={e => handleOnChange(e, nameRef)}
+          />
+          <FormField
             label="E-mail"
             textAlign="center"
-            onChange={e => handleOnChange(e, loginRef)}
+            onChange={e => handleOnChange(e, emailRef)}
           />
           <FormField
             label="Password"
@@ -74,12 +75,12 @@ function Login() {
         </FormContainer>
 
         <ButtonContainer>
-          <Button title="Login" onClick={handleClickLogin} />
           <Button title="Sign Up" onClick={handleClickSignUp} />
+          <Button title="Cancel" onClick={handleCancel} />
         </ButtonContainer>
-      </LoginContent>
-    </LoginContainer>
+      </Content>
+    </Container>
   );
 }
 
-export default Login;
+export default SignUp;

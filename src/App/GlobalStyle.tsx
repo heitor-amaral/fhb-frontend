@@ -17,9 +17,10 @@ const GlobalStyle = createGlobalStyle`
       -moz-osx-font-smoothing: grayscale;
   }
 
-  a, button {
+  a, button, a:visited, a:hover, a:active {
     text-decoration: none;
     cursor: pointer;
+    color: inherit
   }
 
   textarea, input, button {
@@ -27,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     appearance: none;
     border: none;
     padding: 0;
+    font-family: sans-serif;
   }
 `;
 
