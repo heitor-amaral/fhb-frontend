@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Categories from './Categories';
 import Header from '../shared/Header';
 import Latest from './Latest';
@@ -12,13 +11,8 @@ import {
   MessageContainer,
 } from './styles';
 import Trending from './Trending';
-import { Article, getTrendingArticlesAPI } from './Home.service';
 
 function Home() {
-  const [trendingArticles, setTrendingArticles] = React.useState<
-    Article[] | undefined
-  >();
-
   const actionButtonHeader = () => {
     const user = localStorage.getItem('user');
 

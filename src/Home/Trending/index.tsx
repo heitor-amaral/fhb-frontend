@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Dot from '../../shared/Dot';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import { Article, getTrendingArticlesAPI } from '../Home.service';
