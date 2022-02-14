@@ -7,6 +7,12 @@ export const Container = styled.div`
   background-color: ${props => props.theme.colors.background};
 `;
 
+export const HeaderContainer = styled.header`
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid ${props => props.theme.colors.primary};
+`;
+
 export const Content = styled.div`
   display: flex;
   width: auto;

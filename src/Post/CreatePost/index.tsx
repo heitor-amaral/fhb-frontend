@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../shared/Header';
 import { createPostAPI, getArticlesThemeAPI } from './CreatePost.service';
 import {
   Container,
+  HeaderContainer,
   Content,
   Form,
   Title,
@@ -18,12 +20,16 @@ export default function CreatePost() {
   const contentRef = useRef('');
   const idThemeRef = useRef<number>();
 
+  const navigate = useNavigate();
+
   const [articleThemes, setArticleThemes] = useState([]);
 
   async function handleSubmit() {
     const title = titleRef.current;
     const content = contentRef.current;
     const idTheme = idThemeRef.current;
+
+    console.log({ title, content, idTheme });
 
     if (!title || !content || !idTheme) {
       alert('Preencha todos os campos');
@@ -32,6 +38,8 @@ export default function CreatePost() {
 
     try {
       await createPostAPI({ idTheme, title, content });
+      navigate('/');
+      alert('Post criado com sucesso');
     } catch (err) {
       alert('Erro ao criar post');
     }
@@ -49,13 +57,15 @@ export default function CreatePost() {
 
   return (
     <>
-      <Header
-        actionButton={{
-          title: 'Publish',
-          navigateTo: '/',
-          onClick: handleSubmit,
-        }}
-      />
+      <HeaderContainer>
+        <Header
+          actionButton={{
+            title: 'Publish',
+            navigateTo: '/',
+            onClick: handleSubmit,
+          }}
+        />
+      </HeaderContainer>
       <Container>
         <Content>
           <Form>
@@ -70,9 +80,8 @@ export default function CreatePost() {
 
             <ThemeSelector>
               <ThemeSelectorInput
-                placeholder="ThemeSelector"
                 onChange={e => {
-                  titleRef.current = e.target.value;
+                  idThemeRef.current = Number(e.target.value);
                 }}
               >
                 {articleThemes.map((theme: any) => (

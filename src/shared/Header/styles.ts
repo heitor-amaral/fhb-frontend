@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FHBLogo from '../../assets/fhb_logo.png';
 
-export const HeaderContainer = styled.nav`
+export const HeaderContainer = styled(Link)`
   display: flex;
 
   justify-content: space-between;

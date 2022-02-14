@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AsideContainer,
@@ -18,7 +17,7 @@ type HeaderProps = {
 
 function Header({ actionButton }: HeaderProps) {
   return (
-    <HeaderContainer>
+    <HeaderContainer to="/">
       <LogoContainer>
         <LogoImage />
       </LogoContainer>
