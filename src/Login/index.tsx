@@ -3,7 +3,7 @@ import { useRef, MutableRefObject, ChangeEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Button from '../shared/Button';
-import FormField from '../shared/FormField/intex';
+import FormField from '../shared/FormField';
 import { loginAPI } from './login.service';
 import {
   LoginContainer,

@@ -2,7 +2,7 @@
 import { useRef, MutableRefObject, ChangeEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../shared/Button';
-import FormField from '../shared/FormField/intex';
+import FormField from '../shared/FormField';
 import { signUpAPI } from './signup.service';
 import {
   Container,
