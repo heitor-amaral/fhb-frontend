@@ -1,5 +1,4 @@
 import { ThemeProvider } from 'styled-components';
-import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../Home';
 import GlobalStyle from './GlobalStyle';

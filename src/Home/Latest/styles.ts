@@ -55,7 +55,7 @@ export const LatestItemContentFooterText = styled.span`
   font-size: 13px;
 `;
 
-export const LastestItemImageContainer = styled.div``;
+export const LatestItemImageContainer = styled.div``;
 export const LatestItemImage = styled.img.attrs({
   width: 200,
   height: 134,

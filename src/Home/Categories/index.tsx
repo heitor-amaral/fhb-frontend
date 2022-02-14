@@ -8,7 +8,6 @@ import {
   CategoryItemContainer,
   CategoryItemText,
 } from './styles';
-import { Category } from './types';
 
 function renderCategoryItem(data: ArticleTheme[]) {
   if (!data.length) {

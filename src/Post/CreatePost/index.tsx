@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArticleTheme } from '../../Home/Home.service';
 import Header from '../../shared/Header';
 import { createPostAPI, getArticlesThemeAPI } from './CreatePost.service';
 import {
@@ -22,14 +23,16 @@ export default function CreatePost() {
 
   const navigate = useNavigate();
 
-  const [articleThemes, setArticleThemes] = useState([]);
+  const [articleThemes, setArticleThemes] = useState<
+    ArticleTheme[] | undefined
+  >();
 
   async function handleSubmit() {
     const title = titleRef.current;
     const content = contentRef.current;
     const idTheme = idThemeRef.current;
 
-    console.log({ title, content, idTheme });
+    // console.log({ title, content, idTheme });
 
     if (!title || !content || !idTheme) {
       alert('Preencha todos os campos');
@@ -47,10 +50,8 @@ export default function CreatePost() {
 
   useEffect(() => {
     const callback = async () => {
-      const response = getArticlesThemeAPI();
-      const { data } = await response;
-
-      setArticleThemes(data);
+      const response = await getArticlesThemeAPI();
+      setArticleThemes(response);
     };
     callback();
   });
@@ -84,8 +85,8 @@ export default function CreatePost() {
                   idThemeRef.current = Number(e.target.value);
                 }}
               >
-                {articleThemes.map((theme: any) => (
-                  <option key={theme.id} value={theme.id}>
+                {articleThemes?.map(theme => (
+                  <option key={theme.id_theme} value={theme.id_theme}>
                     {theme.name}
                   </option>
                 ))}

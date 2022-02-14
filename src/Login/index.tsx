@@ -46,7 +46,7 @@ function Login() {
     } catch (err) {
       alert('Login ou senha incorretos');
     }
-  }, [navigation, loginRef, passwordRef]);
+  }, [setState, navigation]);
 
   const handleClickSignUp = useCallback(() => {
     navigation('/signup');

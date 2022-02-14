@@ -1,4 +1,5 @@
 import api from '../../App/app.service';
+import { ArticleTheme } from '../../Home/Home.service';
 
 type CreatePostAPIProps = {
   idTheme: number;
@@ -23,6 +24,6 @@ export async function createPostAPI({
   });
 }
 
-export function getArticlesThemeAPI() {
-  return api.get('/article-themes');
+export function getArticlesThemeAPI(): Promise<ArticleTheme[]> {
+  return api.get('/article-themes').then(({ data }) => data);
 }

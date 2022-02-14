@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Dot from '../../shared/Dot';
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import { Article, getLastArticlesAPI } from '../Home.service';
-import { getLatestAPI } from './services';
 import {
   LatestContainer,
   LatestItemContainer,
@@ -13,13 +11,10 @@ import {
   LatestItemContentHeaderText,
   LatestItemContentTitleContainer,
   LatestItemContentTitle,
-  LatestItemContentSubTitle,
   LatestItemContentFooter,
   LatestItemContentFooterText,
-  LastestItemImageContainer,
+  LatestItemImageContainer,
   LatestItemImage,
-  LatestItemTagContainer,
-  LatestItemTagText,
 } from './styles';
 
 function renderLatestItem(data: Article[]) {
@@ -59,11 +54,11 @@ function renderLatestItem(data: Article[]) {
             </LatestItemContentFooter>
           </LatestItemContent>
 
-          <LastestItemImageContainer>
+          <LatestItemImageContainer>
             <LatestItemImage
               src={`https://picsum.photos/seed/${Math.random()}/200/300`}
             />
-          </LastestItemImageContainer>
+          </LatestItemImageContainer>
         </LatestItemContainer>
       ))}
     </>
