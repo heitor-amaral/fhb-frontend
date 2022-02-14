@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/fhb-frontend/static/css/main.593a4b26.css",
-    "main.js": "/fhb-frontend/static/js/main.014d2884.js",
+    "main.js": "/fhb-frontend/static/js/main.e35933dc.js",
     "static/media/fhb_logo_big.png": "/fhb-frontend/static/media/fhb_logo_big.c49aa7cdf8a952320ee5.png",
     "index.html": "/fhb-frontend/index.html",
     "main.593a4b26.css.map": "/fhb-frontend/static/css/main.593a4b26.css.map",
-    "main.014d2884.js.map": "/fhb-frontend/static/js/main.014d2884.js.map"
+    "main.e35933dc.js.map": "/fhb-frontend/static/js/main.e35933dc.js.map"
   },
   "entrypoints": [
     "static/css/main.593a4b26.css",
-    "static/js/main.014d2884.js"
+    "static/js/main.e35933dc.js"
   ]
 }
