@@ -16,11 +16,13 @@ export async function createPostAPI({
 
   if (!user.email) return;
 
-  await api.post('/post', {
+  await api.post('/article', {
     id_author: user.email,
-    id_theme: idTheme,
+    id_theme: Number(idTheme),
     title,
     content,
+    star_score: 0,
+    comment_count: 0,
   });
 }
 

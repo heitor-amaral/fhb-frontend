@@ -12,7 +12,7 @@ type HeaderProps = {
     title: string;
     navigateTo: string;
     onClick?: () => void;
-  };
+  }[];
 };
 
 function Header({ actionButton }: HeaderProps) {
@@ -23,16 +23,14 @@ function Header({ actionButton }: HeaderProps) {
       </LogoContainer>
 
       <AsideContainer>
-        {actionButton && (
-          <Link to={actionButton.navigateTo}>
-            <LinkButton
-              onClick={actionButton.onClick}
-              style={{ marginRight: 20 }}
-            >
-              {actionButton.title}
-            </LinkButton>
-          </Link>
-        )}
+        {actionButton &&
+          actionButton.map(button => (
+            <Link to={button.navigateTo}>
+              <LinkButton onClick={button.onClick} style={{ marginRight: 20 }}>
+                {button.title}
+              </LinkButton>
+            </Link>
+          ))}
       </AsideContainer>
     </HeaderContainer>
   );

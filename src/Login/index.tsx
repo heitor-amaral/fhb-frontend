@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useRef, MutableRefObject, ChangeEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import Button from '../shared/Button';
 import FormField from '../shared/FormField';
 import { loginAPI } from './login.service';
@@ -18,8 +17,6 @@ function Login() {
   const loginRef = useRef<string>('');
   const passwordRef = useRef<string>('');
   const navigation = useNavigate();
-
-  const { setState } = useAuth();
 
   function handleOnChange(
     event: ChangeEvent<HTMLInputElement>,
@@ -41,12 +38,11 @@ function Login() {
       await loginAPI({ login, password });
       localStorage.setItem('user', JSON.stringify({ email: login }));
 
-      setState({ email: login });
       navigation('/');
     } catch (err) {
       alert('Login ou senha incorretos');
     }
-  }, [setState, navigation]);
+  }, [navigation]);
 
   const handleClickSignUp = useCallback(() => {
     navigation('/signup');

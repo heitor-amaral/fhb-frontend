@@ -16,10 +16,28 @@ function Home() {
   const actionButtonHeader = () => {
     const user = localStorage.getItem('user');
 
-    return {
+    const mainButton = {
       title: user ? 'Create Post' : 'Login',
-      navigateTo: '/post/create',
+      navigateTo: user ? '/post/create' : '/login',
     };
+    if (user) {
+      return [
+        mainButton,
+        {
+          title: 'My Posts',
+          navigateTo: '/my-posts',
+        },
+        {
+          title: 'Logout',
+          navigateTo: '/login',
+          onClick: () => {
+            localStorage.removeItem('user');
+          },
+        },
+      ];
+    }
+
+    return [mainButton];
   };
 
   return (

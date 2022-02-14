@@ -65,7 +65,7 @@ function renderLatestItem(data: Article[]) {
   );
 }
 
-function Latest() {
+function Latest({ dataProps }: { dataProps?: Article[] }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<Article[]>([]);
 
@@ -81,7 +81,7 @@ function Latest() {
   }, []);
   return (
     <LatestContainer>
-      {isLoading ? <LoadingSpinner /> : renderLatestItem(data)}
+      {isLoading ? <LoadingSpinner /> : renderLatestItem(dataProps || data)}
     </LatestContainer>
   );
 }

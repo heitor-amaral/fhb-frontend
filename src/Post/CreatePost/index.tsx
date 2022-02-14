@@ -32,7 +32,7 @@ export default function CreatePost() {
     const content = contentRef.current;
     const idTheme = idThemeRef.current;
 
-    // console.log({ title, content, idTheme });
+    console.log({ title, content, idTheme });
 
     if (!title || !content || !idTheme) {
       alert('Preencha todos os campos');
@@ -54,17 +54,19 @@ export default function CreatePost() {
       setArticleThemes(response);
     };
     callback();
-  });
+  }, []);
 
   return (
     <>
       <HeaderContainer>
         <Header
-          actionButton={{
-            title: 'Publish',
-            navigateTo: '/',
-            onClick: handleSubmit,
-          }}
+          actionButton={[
+            {
+              title: 'Publish',
+              navigateTo: '/',
+              onClick: handleSubmit,
+            },
+          ]}
         />
       </HeaderContainer>
       <Container>
